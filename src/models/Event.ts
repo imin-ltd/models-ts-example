@@ -9,7 +9,7 @@ OA prefix due to existing TS clashes? */
  */
 export type OaEvent = {
   '@type': 'Event';
-  /** <Documentation about identifier> */
+  /** <DOCUMENTATION ABOUT `identifier`> */
   identifier?: number | string | PropertyValue | PropertyValue[];
   // ...
 };
