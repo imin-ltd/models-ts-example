@@ -6,7 +6,7 @@ import { PropertyValue } from './PropertyValue';
  */
 export declare type OaEvent = {
     '@type': 'Event';
-    /** <Documentation about identifier> */
+    /** <DOCUMENTATION ABOUT `identifier`> */
     identifier?: number | string | PropertyValue | PropertyValue[];
 };
 export declare const EventJoiSchema: Joi.ObjectSchema<any>;
