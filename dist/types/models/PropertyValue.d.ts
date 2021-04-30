@@ -3,7 +3,7 @@ import { OaValidationError } from '../oaValidationError';
 /**
  * <DOCUMENTATION ABOUT PropertyValue>
  */
-export declare type PropertyValue = {
+export declare type Type = {
     '@type': 'PropertyValue';
     /** <DOCUMENTATION ABOUT `name`> */
     name?: string;
@@ -11,5 +11,5 @@ export declare type PropertyValue = {
     propertyID?: string;
     value?: boolean | string;
 };
-export declare const PropertyValueJoiSchema: Joi.ObjectSchema<any>;
-export declare function validatePropertyValue(maybePropertyValue: unknown): PropertyValue | OaValidationError;
+export declare const Schema: Joi.ObjectSchema<any>;
+export declare function validate(maybePropertyValue: unknown): Type | OaValidationError;

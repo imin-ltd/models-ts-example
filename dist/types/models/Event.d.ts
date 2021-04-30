@@ -1,15 +1,15 @@
 import Joi from 'joi';
 import { OaValidationError } from '../oaValidationError';
-import { PropertyValue } from './PropertyValue';
+import * as PropertyValue from './PropertyValue';
 /**
  * <DOCUMENTATION ABOUT EVENT>
  */
-export declare type OaEvent = {
+export declare type Type = {
     '@type': 'Event';
     /** <DOCUMENTATION ABOUT `identifier`> */
-    identifier?: number | string | PropertyValue | PropertyValue[];
+    identifier?: number | string | PropertyValue.Type | PropertyValue.Type[];
 };
-export declare const EventJoiSchema: Joi.ObjectSchema<any>;
+export declare const Schema: Joi.ObjectSchema<any>;
 /**
  * Use this function like:
  *
@@ -22,4 +22,4 @@ export declare const EventJoiSchema: Joi.ObjectSchema<any>;
  * // otherwise, do stuff with the event. It will now be typed correctly
  * ```
  */
-export declare function validateEvent(maybeEvent: unknown): OaEvent | OaValidationError;
+export declare function validate(maybeEvent: unknown): Type | OaValidationError;

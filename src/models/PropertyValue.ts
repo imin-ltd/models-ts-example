@@ -4,7 +4,7 @@ import { OaValidationError } from '../oaValidationError';
 /**
  * <DOCUMENTATION ABOUT PropertyValue>
  */
-export type PropertyValue = {
+export type Type = {
   '@type': 'PropertyValue';
   /** <DOCUMENTATION ABOUT `name`> */
   name?: string;
@@ -13,7 +13,7 @@ export type PropertyValue = {
   value?: boolean | string;
 };
 
-export const PropertyValueJoiSchema = Joi.object({
+export const Schema = Joi.object({
   '@type': Joi.string().valid('PropertyValue').required(),
   name: Joi.string(),
   description: Joi.string(),
@@ -25,8 +25,8 @@ export const PropertyValueJoiSchema = Joi.object({
   // ...
 });
 
-export function validatePropertyValue(maybePropertyValue: unknown): PropertyValue | OaValidationError {
-  const { value, error } = PropertyValueJoiSchema.validate(maybePropertyValue);
+export function validate(maybePropertyValue: unknown): Type | OaValidationError {
+  const { value, error } = Schema.validate(maybePropertyValue);
   if (error) {
     return new OaValidationError('PropertyValue', maybePropertyValue, error);
   }

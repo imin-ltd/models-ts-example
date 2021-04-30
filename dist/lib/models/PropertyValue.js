@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { OaValidationError } from '../oaValidationError';
-export var PropertyValueJoiSchema = Joi.object({
+export var Schema = Joi.object({
     '@type': Joi.string().valid('PropertyValue').required(),
     name: Joi.string(),
     description: Joi.string(),
@@ -8,8 +8,8 @@ export var PropertyValueJoiSchema = Joi.object({
     value: Joi.alternatives().try(Joi.boolean(), Joi.string())
     // ...
 });
-export function validatePropertyValue(maybePropertyValue) {
-    var _a = PropertyValueJoiSchema.validate(maybePropertyValue), value = _a.value, error = _a.error;
+export function validate(maybePropertyValue) {
+    var _a = Schema.validate(maybePropertyValue), value = _a.value, error = _a.error;
     if (error) {
         return new OaValidationError('PropertyValue', maybePropertyValue, error);
     }

@@ -1,14 +1,9 @@
 import Joi from 'joi';
 import { OaValidationError } from '../oaValidationError';
-import { PropertyValueJoiSchema } from './PropertyValue';
-export var EventJoiSchema = Joi.object({
+import * as PropertyValue from './PropertyValue';
+export var Schema = Joi.object({
     '@type': Joi.string().valid('Event').required(),
-    identifier: [
-        Joi.number(),
-        Joi.string(),
-        PropertyValueJoiSchema,
-        Joi.array().items(PropertyValueJoiSchema),
-    ],
+    identifier: Joi.alternatives().try(Joi.number(), Joi.string(), PropertyValue.Schema, Joi.array().items(PropertyValue.Schema)),
     // ...
 });
 /**
@@ -23,8 +18,8 @@ export var EventJoiSchema = Joi.object({
  * // otherwise, do stuff with the event. It will now be typed correctly
  * ```
  */
-export function validateEvent(maybeEvent) {
-    var _a = EventJoiSchema.validate(maybeEvent), value = _a.value, error = _a.error;
+export function validate(maybeEvent) {
+    var _a = Schema.validate(maybeEvent), value = _a.value, error = _a.error;
     if (error) {
         return new OaValidationError('Event', maybeEvent, error);
     }

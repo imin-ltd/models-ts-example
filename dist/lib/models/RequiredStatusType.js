@@ -1,8 +1,8 @@
 import Joi from 'joi';
 import { OaValidationError } from '../oaValidationError';
-export var RequiredStatusTypeJoiSchema = Joi.string().valid('https://openactive.io/Required', 'https://openactive.io/Optional', 'https://openactive.io/Unavailable');
-export function validateRequiredStatusType(maybeRequiredStatusType) {
-    var _a = RequiredStatusTypeJoiSchema.validate(maybeRequiredStatusType), value = _a.value, error = _a.error;
+export var Schema = Joi.string().valid('https://openactive.io/Required', 'https://openactive.io/Optional', 'https://openactive.io/Unavailable');
+export function validate(maybeRequiredStatusType) {
+    var _a = Schema.validate(maybeRequiredStatusType), value = _a.value, error = _a.error;
     if (error) {
         return new OaValidationError('RequiredStatusType', maybeRequiredStatusType, error);
     }

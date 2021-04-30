@@ -1,8 +1,13 @@
 // import { oa } from '@openactive/models-ts';
+import Joi from 'joi';
 import { oa } from '..';
 
-const x: oa.RequiredStatusType = 'https://openactive.io/Unavailable';
+const x: oa.RequiredStatusType.Type = 'https://openactive.io/Unavailable';
+const y = oa.RequiredStatusType.validate('imnotoneofthevalues'); // this should return an error
+const UserDefinedJoiSchema = Joi.object({
+  requiredStatusType: oa.RequiredStatusType.Schema,
+  // ...
+})
 
-oa.validateRequiredStatusType('imnotoneofthevalues'); // this should return an error
-
-// and of course there'll be oa.OaEvent, which'll be a bit awkward
+// no `OaEvent` at least
+const myEvent: oa.Event.Type = { '@type': 'Event', identifier: 'abc' };

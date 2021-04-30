@@ -1,27 +1,25 @@
 import Joi from 'joi';
 import { OaValidationError } from '../oaValidationError';
-import { PropertyValue, PropertyValueJoiSchema } from './PropertyValue';
+import * as PropertyValue from './PropertyValue';
 
-/* Unfortunately, "Event" is taken. It describes DOM Events. Maybe you could have a list of types which need an
-OA prefix due to existing TS clashes? */
 /**
  * <DOCUMENTATION ABOUT EVENT>
  */
-export type OaEvent = {
+export type Type = {
   '@type': 'Event';
   /** <DOCUMENTATION ABOUT `identifier`> */
-  identifier?: number | string | PropertyValue | PropertyValue[];
+  identifier?: number | string | PropertyValue.Type | PropertyValue.Type[];
   // ...
 };
 
-export const EventJoiSchema = Joi.object({
+export const Schema = Joi.object({
   '@type': Joi.string().valid('Event').required(), // use .valid(..) for literal values like `'Event'`
-  identifier: [ // array means union apparently
+  identifier: Joi.alternatives().try(
     Joi.number(),
     Joi.string(),
-    PropertyValueJoiSchema,
-    Joi.array().items(PropertyValueJoiSchema),
-  ],
+    PropertyValue.Schema,
+    Joi.array().items(PropertyValue.Schema),
+  ),
   // ...
 });
 
@@ -37,8 +35,8 @@ export const EventJoiSchema = Joi.object({
  * // otherwise, do stuff with the event. It will now be typed correctly
  * ```
  */
-export function validateEvent(maybeEvent: unknown): OaEvent | OaValidationError {
-  const { value, error } = EventJoiSchema.validate(maybeEvent);
+export function validate(maybeEvent: unknown): Type | OaValidationError {
+  const { value, error } = Schema.validate(maybeEvent);
   if (error) {
     return new OaValidationError('Event', maybeEvent, error);
   }
