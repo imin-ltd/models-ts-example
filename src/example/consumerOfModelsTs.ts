@@ -1,4 +1,4 @@
-import * as oaModels from '..';
+import * as oaModels from '..'; // imagine this '..' is in fact '@openactive/models-ts'
 
 const x: oaModels.oa.enums.RequiredStatusType.Type = 'https://openactive.io/Required';
 const y: oaModels.oa.Event.Type = { /* .. */ };
