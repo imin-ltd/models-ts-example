@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { OaValidationError } from '../oaValidationError';
+import { OaValidationError } from '../../oaValidationError';
 
 /**
  * <DOCUMENTATION ABOUT RequiredStatusType>

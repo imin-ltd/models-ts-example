@@ -1,12 +1,7 @@
-// import { oa } from '@openactive/models-ts';
-import Joi from 'joi';
-import { oa } from '..';
-var x = 'https://openactive.io/Unavailable';
-var y = oa.RequiredStatusType.validate('imnotoneofthevalues'); // this should return an error
-var UserDefinedJoiSchema = Joi.object({
-    requiredStatusType: oa.RequiredStatusType.Schema,
-    // ...
-});
-// no `OaEvent` at least
-var myEvent = { '@type': 'Event', identifier: 'abc' };
+var x = 'https://openactive.io/Required';
+// const y: oaModels.oa.Event.Type = { /* .. */ };
+var z = 'EventPostponed';
+var x2 = 'https://openactive.io/Optional';
+var x3 = 'https://openactive.io/Unavailable';
+export {};
 //# sourceMappingURL=consumerOfModelsTs.js.map

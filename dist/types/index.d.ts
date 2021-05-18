@@ -1,2 +1,3 @@
 import * as oa from './oa';
-export { oa };
+import * as schema from './schema';
+export { oa, schema };

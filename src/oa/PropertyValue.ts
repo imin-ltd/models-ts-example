@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { OaValidationError } from '../oaValidationError';
+import { OaValidationError } from '../OaValidationError';
 
 /**
  * <DOCUMENTATION ABOUT PropertyValue>
